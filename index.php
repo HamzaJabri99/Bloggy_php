@@ -49,14 +49,24 @@ include('./includes/header.php');
             <ul class="list-group list-group-light card">
                 <li class="list-group-item border-0 disabled">Categories</li>
                 <hr>
-                <li class="list-group-item border-0">Anime</li>
-                <li class="list-group-item border-0">Technologies</li>
-                <li class="list-group-item border-0">Web developement</li>
-                <li class="list-group-item border-0">Design</li>
+                <?php
+                $query = 'select*from categories';
+                $categories = mysqli_query($con, $query);
+                while ($category = $categories->fetch_assoc()) :
+                ?>
+                <li class="list-group-item border-0 "><a class="text-white badge badge-dark hover-shadow fs-5"
+                        href="categoryPosts.php?id=<?php echo $category['id'] ?>"><?php echo ($category['name']) ?></a>
+                </li>
+                <?php endwhile; ?>
             </ul>
             <ul class="list-group list-group-light card mt-5 d-flex flex-column align-items-center">
-                <li class="list-group-item border-0 disabled">Latest Updates</li>
+                <li class="list-group-item border-0 disabled">Latest Articles</li>
                 <hr>
+                <?php
+                $query = 'select*from articles order by created DESC LIMIT 3';
+                $articles = mysqli_query($con, $query);
+                while ($article = $articles->fetch_assoc()) :
+                ?>
                 <li class="list-group-item  border-dark">
                     <div class="card bg-light text-dark mb-3" style="max-width: 18rem;">
                         <div class="card-header d-flex justify-content-between"> <a href=""><img
@@ -65,13 +75,13 @@ include('./includes/header.php');
                                     style="height:100%" /></a>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Light card title</h5>
+                            <h5 class="card-title"><?php echo ($article['title']) ?></h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk
                                 of the card's content.</p>
                         </div>
                     </div>
                 </li>
-
+                <?php endwhile; ?>
             </ul>
         </div>
 
