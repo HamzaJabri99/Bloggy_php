@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('database/conn.php');
+include('database/utils.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -4,6 +4,11 @@ include('./includes/header.php');
 <div class="container ">
     <div class="row d-flex justify-content-around">
         <div class="col-md-7 mt-5">
+            <?php
+            $query = "select*from articles";
+            $results = mysqli_query($con, $query);
+            while ($article = $results->fetch_assoc()) :
+            ?>
             <div class="card mb-3">
                 <div class=" row g-0">
                     <div class="col-md-4">
@@ -15,22 +20,30 @@ include('./includes/header.php');
                         <div class="card-body">
 
                             <div class="card-title d-flex justify-content-between">
-                                <h5 class="">Card title</h5>
-                                <p class="text-muted fw-lighter"><span
-                                        class="badge badge-success">11-04-2022</span><span
-                                        class="badge badge-info mx-4">Anime</span></p>
+                                <h5 class=""><?php echo ($article['title']) ?></h5>
+                                <p class="text-muted fw-lighter"><span class="badge badge-success">
+                                        <?php echo ($article['created']) ?>
+
+                                    </span><span class="badge badge-info mx-4"><?php $cat = getCategories($con, $article['category_id']);
+                                                                                    echo ($cat['name']) ?></span>
+                                </p>
                             </div>
                             <p class="card-text">
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                                <?php
+                                    $string = $article['body'];
+                                    if (strlen($string) > 200) {
+                                        echo substr($string, 0, 200) . '...';
+                                    }
+                                    ?>
                             </p>
                             <p class="card-text">
-                                <small class="text-muted">Last updated 3 mins ago</small>
+                                <small class="text-muted">created on <?php echo ($article['created']) ?></small>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php endwhile; ?>
         </div>
         <div class="col-md-3 mt-5 text-center">
             <ul class="list-group list-group-light card">
