@@ -20,7 +20,7 @@ include('database/utils.php')
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Navbar brand -->
@@ -50,6 +50,7 @@ include('database/utils.php')
                             <li><a class="dropdown-item" href="#">Login</a></li>
                             <li><a href="#" class="dropdown-item">LogOut</a></li>
                         </ul>
+
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
                 </ul>

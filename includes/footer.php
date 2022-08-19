@@ -51,7 +51,7 @@
                        <!--Grid column-->
                        <div class="col-auto">
                            <!-- Submit button -->
-                           <button type="submit" class="btn btn-outline-light mb-4">
+                           <button type="submit" class="btn btn-outline-dark mb-4 bg-light">
                                Subscribe
                            </button>
                        </div>

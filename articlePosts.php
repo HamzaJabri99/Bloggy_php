@@ -5,19 +5,19 @@ include('./includes/header.php');
     <div class="row d-flex justify-content-around">
         <div class="col-md-7 mt-5">
             <?php
-            $query = "select*from articles";
+            $id = mysqli_escape_string($con, $_GET['id']);
+            $query = "select*from articles where id ='$id'";
             $results = mysqli_query($con, $query);
-            while ($article = $results->fetch_assoc()) :
+            $article = $results->fetch_assoc();
+            if ($article !== null) :
             ?>
             <div class="card mb-3">
                 <div class=" row g-0">
-                    <div class="col-md-4">
-                        <a href="articlePosts.php?id=<?php echo ($article['id']) ?>"><img
-                                src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg"
-                                alt="Trendy Pants and Shoes" class="card-img img-fluid rounded"
-                                style="height:100%" /></a>
+                    <div class="col-md-12">
+                        <img src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg"
+                            alt="Trendy Pants and Shoes" class="card-img img-fluid rounded" />
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card-body">
 
                             <div class="card-title d-flex justify-content-between">
@@ -32,23 +32,22 @@ include('./includes/header.php');
                             <p class="card-text">
                                 <?php
                                     $string = $article['body'];
-                                    if (strlen($string) > 200) {
-                                        echo substr($string, 0, 200) . '...';
-                                    }
+                                    echo ($string);
                                     ?>
-                                <a href="articlePosts.php?id=<?php echo ($article['id']) ?>" class=" bg-light">Read
-                                    More</a>
 
                             </p>
 
-                            <p class="card-text">
-                                <small class="text-muted">created on <?php echo ($article['created']) ?></small>
-                            </p>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <?php endwhile; ?>
+            <?php endif; ?>
+            <?php if (!$article) {
+                echo ('<p>no article was found</p> ');
+
+                echo ('<p><a href="index.php"><i class="fas fa-angle-left"> </i> back?</a></p>');
+            } ?>
         </div>
         <div class="col-md-3 mt-5 text-center ">
             <ul class="list-group list-group-light border-dark card  d-flex flex-column align-items-center">
