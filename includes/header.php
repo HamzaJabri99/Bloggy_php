@@ -22,7 +22,7 @@ include('database/utils.php')
 <body class="bg-light">
     <nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
-        <div class="container-fluid">
+        <div class="container-fluid mx-5">
             <!-- Navbar brand -->
             <a class="navbar-brand" href="#">Bloggy</a>
 
@@ -57,9 +57,12 @@ include('database/utils.php')
 
 
                 <!-- Search -->
-                <form class="w-auto d-flex" action="./search.php" method="GET">
-                    <input type="search" class="form-control" placeholder="Search Something..." aria-label="Search" />
-
+                <form style="position: relative;" class="w-auto d-flex" action="searchPost.php" method="GET">
+                    <input type="search" class="form-control " placeholder="Type Something..." aria-label="Search"
+                        name="search" />
+                    <button type="submit" class="border-0 bg-light">
+                        <i style=" position: absolute; top:10px; right:45px;" class="fas fa-search"></i>
+                    </button>
                 </form>
             </div>
         </div>
