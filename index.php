@@ -6,7 +6,7 @@ include('./includes/header.php');
         <div class="col-md-7 mt-5">
             <?php
             $start = 0;
-            $limit = 3;
+            $limit = 4;
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $start = ($page * $limit) - $limit;
             $query = "select*from articles limit $start,$limit";
@@ -53,21 +53,20 @@ include('./includes/header.php');
                 </div>
             </div>
             <?php endwhile; ?>
-            <div class="col-md-4">
+            <div class="col-md-4 mt-4 mx-auto">
                 <?php
-
                 $query = "select count(id)from articles";
                 $result = mysqli_query($con, $query);
                 $row = $result->fetch_row();
                 $totalArticles = $row[0];
                 $totalPages = ceil($totalArticles / $limit);
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $links = "<nav class='text-center'><ul class='pagination'>";
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
                 for ($i = 1; $i <= $totalPages; $i++) {
-                    $active = $i == $page ?  "class='page-item active'>" : "";
-                    $links = "<li $active><a class='page-link' href='index.php?page=" . $i . "'>" . $i . "</a></li>";
-                }
-                echo ($links . "</ul></nav>")
+                    $active = $i == $page ?  'class="page-item active"' : '';
+                    $links .= "<li $active><a class='page-link' href='index.php?page=" . $i . "'>" . $i . "</a></li>";
+                };
+                echo ($links . "</ul></nav>");
                 ?>
             </div>
         </div>
