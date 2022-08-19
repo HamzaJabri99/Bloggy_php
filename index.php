@@ -5,7 +5,11 @@ include('./includes/header.php');
     <div class="row d-flex justify-content-around">
         <div class="col-md-7 mt-5">
             <?php
-            $query = "select*from articles";
+            $start = 0;
+            $limit = 3;
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $start = ($page * $limit) - $limit;
+            $query = "select*from articles limit $start,$limit";
             $results = mysqli_query($con, $query);
             while ($article = $results->fetch_assoc()) :
             ?>
@@ -49,6 +53,23 @@ include('./includes/header.php');
                 </div>
             </div>
             <?php endwhile; ?>
+            <div class="col-md-4">
+                <?php
+
+                $query = "select count(id)from articles";
+                $result = mysqli_query($con, $query);
+                $row = $result->fetch_row();
+                $totalArticles = $row[0];
+                $totalPages = ceil($totalArticles / $limit);
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $links = "<nav class='text-center'><ul class='pagination'>";
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    $active = $i == $page ?  "class='page-item active'>" : "";
+                    $links = "<li $active><a class='page-link' href='index.php?page=" . $i . "'>" . $i . "</a></li>";
+                }
+                echo ($links . "</ul></nav>")
+                ?>
+            </div>
         </div>
         <div class="col-md-3 mt-5 text-center ">
             <ul class="list-group list-group-light border-dark card  d-flex flex-column align-items-center">
@@ -101,6 +122,7 @@ include('./includes/header.php');
         </div>
 
     </div>
+
 </div>
 <?php
 include('./includes/footer.php')
