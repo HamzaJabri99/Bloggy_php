@@ -46,7 +46,7 @@ include('database/utils.php')
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sign up</a></li>
+                            <li><a class="dropdown-item" href="signUp.php">Sign up</a></li>
                             <li><a class="dropdown-item" href="#">Login</a></li>
                             <li><a href="#" class="dropdown-item">LogOut</a></li>
                         </ul>
