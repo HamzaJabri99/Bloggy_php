@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('database/conn.php');
 include('database/utils.php')
 ?>
@@ -45,12 +44,17 @@ include('database/utils.php')
                             data-mdb-toggle="dropdown" aria-expanded="false">
                             Account
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="signUp.php">Sign up</a></li>
-                            <li><a class="dropdown-item" href="#">Login</a></li>
-                            <li><a href="#" class="dropdown-item">LogOut</a></li>
-                        </ul>
 
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) : ?>
+                            <li><a class="dropdown-item" href="profile.php">Hi <?php echo ($_SESSION['username']) ?></a>
+                            </li>
+                            <li><a href="#" class="dropdown-item">LogOut</a></li>
+                            <?php elseif (!isset($_SESSION['logged'])) : ?>
+                            <li><a class="dropdown-item" href="signUp.php">Sign up</a></li>
+                            <li><a class="dropdown-item" href="login.php">Login</a></li>
+                            <?php endif; ?>
+                        </ul>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
                 </ul>
