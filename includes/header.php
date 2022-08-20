@@ -49,7 +49,7 @@ include('database/utils.php')
                             <?php if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) : ?>
                             <li><a class="dropdown-item" href="profile.php">Hi <?php echo ($_SESSION['username']) ?></a>
                             </li>
-                            <li><a href="#" class="dropdown-item">LogOut</a></li>
+                            <li><a href="logout.php" class="dropdown-item">LogOut</a></li>
                             <?php elseif (!isset($_SESSION['logged'])) : ?>
                             <li><a class="dropdown-item" href="signUp.php">Sign up</a></li>
                             <li><a class="dropdown-item" href="login.php">Login</a></li>
