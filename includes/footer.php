@@ -60,9 +60,7 @@
                    <!--Grid row-->
                </form>
            </section>
-           <!-- Section: Form -->
 
-           <!-- Section: Text -->
            <section class="mb-4">
                <p>
                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
@@ -70,9 +68,7 @@
                    eum harum corrupti dicta, aliquam sequi voluptate quas.
                </p>
            </section>
-           <!-- Section: Text -->
 
-           <!-- Section: Links -->
 
        </div>
        <!-- Grid container -->
@@ -80,12 +76,15 @@
        <!-- Copyright -->
        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
            © 2022 Copyright:
-           <a class="text-white" href="https://mdbootstrap.com/">Bloggy.com</a>
+           <a class="text-white" href="index.php">Bloggy.com</a>
        </div>
        <!-- Copyright -->
    </footer>
    <!-- Footer -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+   <script src="includes/js/addComment.js"></script>
    </body>
 
    </html>

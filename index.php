@@ -109,9 +109,9 @@ include('./includes/header.php');
                         <div class="card-body">
                             <h5 class="card-title"><?php echo ($article['title']) ?></h5>
                             <p class="card-text">
-                                <?php echo (substr($article['body'], 0, 150)) . '...';
-                                    echo ('<a href="" class="btn btn-primary">Read More</a>') ?>
-
+                                <?php echo (substr($article['body'], 0, 150)) . '...'; ?>
+                                <a href="articlePosts.php?id=<?php echo ($article["id"]) ?>"
+                                    class="btn btn-primary">Read More</a>
                             </p>
                         </div>
                     </div>

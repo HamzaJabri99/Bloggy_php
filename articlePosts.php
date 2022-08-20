@@ -48,6 +48,31 @@ include('./includes/header.php');
 
                 echo ('<p><a href="index.php"><i class="fas fa-angle-left"> </i> back?</a></p>');
             } ?>
+            <hr>
+            <div class="col-md-6 ">
+                <h3 class="card-header my-3">Add Your Opinion</h3>
+                <div id="results"></div>
+                <form method="POST" id="addComment">
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="<?php if (isset($_SESSION['username'])) echo $_SESSION['username'] ?>">
+                        <label class="form-label" for="name">name</label>
+                    </div>
+                    <input id="article_id" type="hidden" name="article_id" value="<?php echo $id ?>">
+                    <div class="form-outline mt-3">
+
+                        <input type="text" name="email" id="email" class="form-control"
+                            value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email'] ?>">
+                        <label for="email" class="form-label">email</label>
+                    </div>
+                    <div class="form-outline mt-3">
+                        <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"></textarea>
+                        <label class="form-label" for="comment">comment</label>
+                    </div>
+                    <button class="mt-2 btn btn-secondary" type="submit">Comment</button>
+                </form>
+            </div>
+
         </div>
         <div class="col-md-3 mt-5 text-center ">
             <ul class="list-group list-group-light border-dark card  d-flex flex-column align-items-center">
@@ -88,9 +113,9 @@ include('./includes/header.php');
                         <div class="card-body">
                             <h5 class="card-title"><?php echo ($article['title']) ?></h5>
                             <p class="card-text">
-                                <?php echo (substr($article['body'], 0, 150)) . '...';
-                                    echo ('<a href="" class="btn btn-primary">Read More</a>') ?>
-
+                                <?php echo (substr($article['body'], 0, 150)) . '...'; ?>
+                                <a href="articlePosts.php?id=<?php echo ($article["id"]) ?>"
+                                    class="btn btn-primary">Read More</a>
                             </p>
                         </div>
                     </div>
@@ -100,6 +125,7 @@ include('./includes/header.php');
         </div>
 
     </div>
+
 </div>
 <?php
 include('./includes/footer.php')

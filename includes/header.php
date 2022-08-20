@@ -36,7 +36,7 @@ include('database/utils.php')
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Link -->
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Articles</a></li>
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
