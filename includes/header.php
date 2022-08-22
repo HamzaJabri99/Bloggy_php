@@ -1,6 +1,6 @@
 <?php
 include('database/conn.php');
-include('database/utils.php')
+include('database/utils.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

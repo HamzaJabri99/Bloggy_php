@@ -1,9 +1,7 @@
 var data;
 $("#addComment").on("submit", function (e) {
   e.preventDefault();
-  var id = $("#article_id").val();
   data = $(this).serializeArray();
-  data.push({ name: "article_id", value: id });
   sendData();
 });
 function sendData() {

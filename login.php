@@ -66,6 +66,14 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
-<?php
-include('./includes/footer.php')
-?>
+<div class="text-center p-3 fixed-bottom bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="index.php">Bloggy.com</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+<script src="includes/js/addComment.js"></script>
+</body>
+
+</html>
