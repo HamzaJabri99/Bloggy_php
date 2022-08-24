@@ -1,6 +1,10 @@
 <?php
 include "./includes/header.php";
 //#3F1143w//#17EC8E
+$unpublished = "select*from comments where status=0";
+if ($result = mysqli_query($con, $unpublished)) {
+    $unpublishedComments = $result->num_rows;
+}
 ?>
 <!--takes whole width of the page-->
 <div class="d-flex" id="wrapper">
@@ -12,24 +16,29 @@ include "./includes/header.php";
             <a href="" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
                     class="fas fa-tachometer-alt me-2"></i>
                 dashboard</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-file-circle-plus me-2"></i>
                 Add An Article</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-newspaper me-2"></i>
                 Articles</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-calendar-plus me-2"></i>
                 Add a Category</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-layer-group me-2"></i>
                 Categories</a>
+            <div class="d-flex justify-content-center align-items-center">
+                <a href=""
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold w-auto p-3 "><i
+                        class="fas fa-comment-dots me-2"></i>
+                    Manage Comments
+                </a>
+                <p class="fw-bold"><?php echo '<span class="text-info">(' . ($unpublishedComments) . ')</span>'  ?></p>
+            </div>
 
             <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fas fa-comment-dots me-2"></i>
-                Manage Comments</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fa-solid fa-right-from-bracket me-2 text-danger"></i>
+                    class="fa-solid fa-right-from-bracket me-2 text-danger w-auto p-3"></i>
                 logout</a>
         </div>
     </div>
