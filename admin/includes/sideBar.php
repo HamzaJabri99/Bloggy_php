@@ -1,25 +1,34 @@
-<div class="col-md-2 col-6 bg-custom-1 p-0 text-white bg-dark" id="navbarToggleExternalContent">
-    <header class="bg-custom-2 p-3 ps-4">
-        <h2>Sidebar</h2>
-    </header>
-    <ul class="nav flex-column ">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Project</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Team</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Service</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Contact us</a>
-        </li>
-    </ul>
-</div>
+    <div class="bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4 text-dark fs-4 fw-bold text-uppercase border-bottom">
+            <i class="fas fa-user me-2"></i>Admin
+        </div>
+        <div class="list-group list-group-flush my-3">
+            <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
+                    class="fas fa-tachometer-alt me-2"></i>
+                dashboard</a>
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+                    class="fa-solid fa-file-circle-plus me-2"></i>
+                Add An Article</a>
+            <a href="articles.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+                    class="fa-solid fa-newspaper me-2"></i>
+                Articles</a>
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+                    class="fa-solid fa-calendar-plus me-2"></i>
+                Add a Category</a>
+            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+                    class="fa-solid fa-layer-group me-2"></i>
+                Categories</a>
+
+            <a href=""
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold w-auto px-3 fs-6"><i
+                    class="fas fa-comment-dots me-2 "></i>
+                Manage Comments
+                <?php echo '<span class="text-warning">(' . ($unpublishedComments) . ')</span>'  ?>
+            </a>
+
+
+            <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    class="fa-solid fa-right-from-bracket me-2 text-danger w-auto p-3"></i>
+                logout</a>
+        </div>
+    </div>

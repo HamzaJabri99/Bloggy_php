@@ -35,30 +35,31 @@ if (isset($_POST['submit'])) {
                 <div class="d-flex align-items-center  mt-5">
                     <img class="img-fluid w-50" src="../includes/img/download.svg" alt="">
 
-                    <form action="" method="POST" class="w-75 p-5 d-flex flex-column justify-content-center">
-                        <h3 class="card-header">Log<span class="text-secondary">In
+                    <form action="" method="POST" class="w-100 p-5 d-flex flex-column justify-content-center">
+                        <h3 class="card-header text-center">Log<span class="text-indigo-100 ">in
                             </span>
                         </h3>
                         <?php
                         if (!empty($errors)) {
-                            echo "<div class='alert alert-danger'>$errors</div>";
+                            echo "<div class='alert alert-danger mt-3'>$errors</div>";
                         } else {
                             echo $message;
                         }
                         ?>
 
-                        <div class="form-outline mt-4">
+                        <div class="form-outline ">
                             <input type="email" class="form-control" id="email" name="email"
                                 value="<?php if (isset($email)) echo $email; ?>">
                             <label class="form-label" for="email">email address</label>
                         </div>
-                        <div class="form-outline mt-4">
+                        <div class="form-outline ">
                             <input type="password" class="form-control" id="pass" name="pass">
                             <label class="form-label" for="pass">password</label>
+
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-secondary mt-4 w-50" type="submit" name="submit">Login </button>
-                        </div>
+                        <button class="btn btn-success mt-4 " type="submit" name="submit"
+                            style="width: 150px; height: 50px;">Login
+                        </button>
                     </form>
                 </div>
             </div>

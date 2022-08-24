@@ -1,6 +1,9 @@
 <?php
 include "./includes/header.php";
 //#3F1143w//#17EC8E
+if (!isset($_SESSION['admin'])) {
+    header('location:../index.php');
+}
 $unpublished = "select*from comments where status=0";
 if ($result = mysqli_query($con, $unpublished)) {
     $unpublishedComments = $result->num_rows;
@@ -8,40 +11,9 @@ if ($result = mysqli_query($con, $unpublished)) {
 ?>
 <!--takes whole width of the page-->
 <div class="d-flex" id="wrapper">
-    <div class="bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading text-center py-4 text-dark fs-4 fw-bold text-uppercase border-bottom">
-            <i class="fas fa-user me-2"></i>Admin
-        </div>
-        <div class="list-group list-group-flush my-3">
-            <a href="" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
-                    class="fas fa-tachometer-alt me-2"></i>
-                dashboard</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
-                    class="fa-solid fa-file-circle-plus me-2"></i>
-                Add An Article</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
-                    class="fa-solid fa-newspaper me-2"></i>
-                Articles</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
-                    class="fa-solid fa-calendar-plus me-2"></i>
-                Add a Category</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
-                    class="fa-solid fa-layer-group me-2"></i>
-                Categories</a>
-            <div class="d-flex justify-content-center align-items-center">
-                <a href=""
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold w-auto p-3 "><i
-                        class="fas fa-comment-dots me-2"></i>
-                    Manage Comments
-                </a>
-                <p class="fw-bold"><?php echo '<span class="text-info">(' . ($unpublishedComments) . ')</span>'  ?></p>
-            </div>
-
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fa-solid fa-right-from-bracket me-2 text-danger w-auto p-3"></i>
-                logout</a>
-        </div>
-    </div>
+    <?php
+    include('./includes/sideBar.php')
+    ?>
     <!--Sidebar end-->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
