@@ -47,12 +47,12 @@ if (isset($_POST['submit'])) {
                         }
                         ?>
 
-                        <div class="form-outline ">
+                        <div class="form-outline mt-4">
                             <input type="email" class="form-control" id="email" name="email"
                                 value="<?php if (isset($email)) echo $email; ?>">
                             <label class="form-label" for="email">email address</label>
                         </div>
-                        <div class="form-outline ">
+                        <div class="form-outline mt-4">
                             <input type="password" class="form-control" id="pass" name="pass">
                             <label class="form-label" for="pass">password</label>
 

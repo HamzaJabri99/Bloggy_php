@@ -63,7 +63,8 @@ if ($result = mysqli_query($con, $articles)) {
             <div class="row my-5">
                 <h3 class="fs-4 mb-3">List of Articles</h3>
                 <div class="col">
-                    <table class="table bg-white rounded shadow-sm w-75 mx-auto table-hover text-center table-bordered">
+                    <table
+                        class="table bg-white rounded shadow-sm w-100 mx-auto table-hover text-center table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col" width="50">#</th>
@@ -87,15 +88,23 @@ if ($result = mysqli_query($con, $articles)) {
                                 <th scope="row"><?php echo ($articles["id"]) ?></th>
                                 <td><?php echo ($articles["title"]) ?></td>
                                 <td><?php
-                                        $articleBody = substr($articles["body"], 0, 50);
+                                        $articleBody = substr($articles["body"], 0, 60);
                                         echo $articleBody . '....' ?></td>
                                 <td><?php echo ($articles["author"]) ?></td>
-                                <td><?php echo ($articles["image"]) ?></td>
-                                <td><?php echo ($articles["image"]) ?></td>
-                                <td>View</td>
+                                <td class="col-sm-1"><img class="img-fluid"
+                                        src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg" alt=""></td>
+                                <td><?php $cleantime = substr($articles["created"], 0, -8);
+                                        echo  $cleantime ?></td>
                                 <td>
-                                    <a href="" class="btn btn-warning mx-2"> Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="../articlePosts.php?id=<?php echo ($articles['id']) ?>"
+                                        class="btn btn-sm btn-info ms-2 me-2"> <i class="fas fa-eye"></i></a>
+                                </td>
+                                <td>
+                                    <a href="editArticle.php?id=<?php echo ($articles["id"]) ?>"
+                                        class="btn btn-sm btn-warning ms-2 me-2"><i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="deleteArticle.php?id=<?php echo ($articles["id"]) ?>"
+                                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endwhile; ?>
