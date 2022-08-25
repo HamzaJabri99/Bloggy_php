@@ -1,17 +1,31 @@
 <?php
 include('./includes/header.php');
 $id = mysqli_escape_string($con, $_GET['id']);
+$errors = [];
+$message = "";
+
 if (isset($_POST['submit'])) {
-    $title = $_POST['title'];
-    $body = $_POST['body'];
-    $author = $_POST['author'];
-    $category = $_POST['category'];
-    $created = date("Y-m-d H:m:s");
-    $query = "update articles set title='$title',body='$body',author='$author',category_id='$category',created='$created' where id='$id'";
-    if (mysqli_query($con, $query)) {
-        header('location:dashboard.php');
+    if (empty($_POST['title'])) {
+        $errors = "Title is Required";
+    } else if (empty($_POST['body']) || mb_strlen($_POST['body']) < 50) {
+        $errors = "Content section needs to be filled and has at least 50 characters";
+    } else if (empty($_POST['author'])) {
+        $errors = "Article needs an author";
+    } else if (empty($_POST['category'])) {
+        $errors = "Article needs a category";
     } else {
-        echo mysqli_error($con);
+        $title = mysqli_escape_string($con, $_POST['title']);
+        $body = mysqli_escape_string($con, $_POST['body']);
+        $author = mysqli_escape_string($con, $_POST['author']);
+        $category = mysqli_escape_string($con, $_POST['category']);
+        $created = date("Y-m-d H:m:s");
+        $query = "update articles set title='$title',body='$body',author='$author',category_id='$category',created='$created' where id='$id'";
+        if (mysqli_query($con, $query)) {
+            $message = "Article Modified successfuly";
+            header('location:dashboard.php');
+        } else {
+            echo mysqli_error($con);
+        }
     }
 }
 ?>
@@ -30,6 +44,13 @@ if (isset($_POST['submit'])) {
         <form class="row g-3" method="POST">
             <div class="col-md-4 mx-auto my-5">
                 <?php
+                if (!empty($errors)) {
+                    echo '<div class="alert alert-danger">' . $errors . '</div>';
+                } else {
+                    echo $message;
+                }
+                ?>
+                <?php
                 $query = "select*from articles where id='$id'";
                 $result = mysqli_query($con, $query);
                 $article = $result->fetch_assoc();
@@ -39,11 +60,14 @@ if (isset($_POST['submit'])) {
                 <div class="col-12 mt-4">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title"
-                        value="<?php echo $article['title'] ?>">
+                        value="<?php
+                                                                                                echo (isset($_POST['title'])) ?  $_POST['title'] : $article['title']; ?>">
                 </div>
                 <div class="col-12">
                     <label for="body">Content</label>
-                    <textarea class="form-control" id="body" name="body"><?php echo $article['body'] ?></textarea>
+                    <textarea class="form-control" id="body" name="body"><?php
+                                                                                echo (isset($_POST['body'])) ? $_POST['body'] : $article['body'];
+                                                                                ?></textarea>
                 </div>
                 <div class="col-12">
                     <label for="image" class="form-label">Image</label>
