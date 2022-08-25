@@ -34,12 +34,12 @@ if ($result = mysqli_query($con, $articles)) {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user me-2"></i>Jabri Hamza
+                            <i class="fas fa-user me-2"></i><?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,9 +62,9 @@ if ($result = mysqli_query($con, $articles)) {
 
             <div class="row my-5">
                 <h3 class="fs-4 mb-3">List of Articles</h3>
-                <div class="col">
+                <div class="col-sm-12">
                     <table
-                        class="table bg-white rounded shadow-sm w-100 mx-auto table-hover text-center table-bordered">
+                        class="table bg-white rounded shadow-sm w-100 mx-auto table-hover text-center table-bordered ">
                         <thead>
                             <tr>
                                 <th scope="col" width="50">#</th>
@@ -91,8 +91,9 @@ if ($result = mysqli_query($con, $articles)) {
                                         $articleBody = substr($articles["body"], 0, 60);
                                         echo $articleBody . '....' ?></td>
                                 <td><?php echo ($articles["author"]) ?></td>
-                                <td class="col-sm-1"><img class="img-fluid"
-                                        src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg" alt=""></td>
+                                <td class="col-sm-1"><img class="img-fluid rounded"
+                                        src="./imgs/<?php echo ($articles['image']) ?>" alt="" width="100" height="100">
+                                </td>
                                 <td><?php $cleantime = substr($articles["created"], 0, -8);
                                         echo  $cleantime ?></td>
                                 <td>

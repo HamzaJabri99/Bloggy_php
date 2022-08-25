@@ -14,15 +14,25 @@ if (isset($_POST['submit'])) {
     } else if (empty($_POST['category'])) {
         $errors = "Article needs a category";
     } else {
+        //duplicated code i know but i felt lazy to redo all things again (bare with me ^_^)
+        // in add new artricle page i'll try to write better and clean code :D
+        $query = "select*from articles where id='$id'";
+        $result = mysqli_query($con, $query);
+        $article = $result->fetch_assoc();
+        //-------------------------------
         $title = mysqli_escape_string($con, $_POST['title']);
         $body = mysqli_escape_string($con, $_POST['body']);
         $author = mysqli_escape_string($con, $_POST['author']);
-        $category = mysqli_escape_string($con, $_POST['category']);
+        $category = !(empty($_POST['category'])) ? mysqli_escape_string($con, $_POST['category']) : $article['category_id'];
+        $image = mysqli_escape_string($con, empty($_FILES['image']['name']) ? $article['image'] : $_FILES['image']['name']);
         $created = date("Y-m-d H:m:s");
-        $query = "update articles set title='$title',body='$body',author='$author',category_id='$category',created='$created' where id='$id'";
+        $directory = "imgs/";
+        $file = $directory . basename($_FILES['image']['name']);
+        $query = "update articles set title='$title',body='$body',image='$image',author='$author',category_id='$category',created='$created' where id='$id'";
         if (mysqli_query($con, $query)) {
-            $message = "Article Modified successfuly";
-            header('location:dashboard.php');
+            move_uploaded_file($_FILES['image']['tmp_name'], $file);
+            $message = "<p class='alert alert-success'>Article Modified successfuly</p>";
+            //header('location:dashboard.php');
         } else {
             echo mysqli_error($con);
         }
@@ -41,7 +51,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="container">
-        <form class="row g-3" method="POST">
+        <form class="row g-3" method="POST" enctype="multipart/form-data">
             <div class="col-md-4 mx-auto my-5">
                 <?php
                 if (!empty($errors)) {
@@ -65,13 +75,13 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="col-12">
                     <label for="body">Content</label>
-                    <textarea class="form-control" id="body" name="body"><?php
-                                                                                echo (isset($_POST['body'])) ? $_POST['body'] : $article['body'];
-                                                                                ?></textarea>
+                    <textarea class="form-control" id="body" name="body" rows="5" cols="30"><?php
+                                                                                                echo (isset($_POST['body'])) ? $_POST['body'] : $article['body'];
+                                                                                                ?></textarea>
                 </div>
                 <div class="col-12">
                     <label for="image" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="image" name="image">
+                    <input type="file" class="form-control" id="image" name="image" value="<?php $file ?>">
                 </div>
                 <div class="col-12">
                     <label for="author" class="form-label">Author</label>
@@ -85,20 +95,18 @@ if (isset($_POST['submit'])) {
                         ?>
                     <label for="category" class="form-label">Category</label>
                     <select id="category" class="form-select" name="category">
-                        <?php
-                            include('./utils/utils.php');
-                            $category = getCategory($con, $article['category_id']);
-                            ?>
-                        <option disabled selected value="<?php echo $category['id'] ?>">
-                            <?php
-                                echo ($category['name'])
-                                ?>
+
+                        <option disabled selected>
+                            select a category
                         </option>
 
                         <?php
                             while ($category = $result->fetch_assoc()) :
                             ?>
-                        <option value="<?php echo $category["id"] ?>"><?php echo $category["name"] ?></option>
+
+                        <option value="<?php echo $category["id"] ?>"
+                            <?php echo $category['id'] === $article['category_id'] ? 'selected' : '' ?>>
+                            <?php echo $category["name"] ?></option>
                         <?php endwhile ?>
                     </select>
                 </div>
