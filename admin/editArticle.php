@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-12">
                     <label for="author" class="form-label">Author</label>
                     <input type="text" class="form-control" id="author" name="author"
-                        value="<?php echo $article['author'] ?>">
+                        value="<?php echo isset($_POST['author']) ? $_POST['author'] : $article['author'] ?>">
                 </div>
                 <div class="col-md-6">
                     <?php
@@ -86,6 +86,7 @@ if (isset($_POST['submit'])) {
                     <label for="category" class="form-label">Category</label>
                     <select id="category" class="form-select" name="category">
                         <option disabled selected>Choose a category</option>
+
                         <?php
                             while ($category = $result->fetch_assoc()) :
                             ?>
