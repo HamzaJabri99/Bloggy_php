@@ -85,7 +85,15 @@ if (isset($_POST['submit'])) {
                         ?>
                     <label for="category" class="form-label">Category</label>
                     <select id="category" class="form-select" name="category">
-                        <option disabled selected>Choose a category</option>
+                        <?php
+                            include('./utils/utils.php');
+                            $category = getCategory($con, $article['category_id']);
+                            ?>
+                        <option disabled selected value="<?php echo $category['id'] ?>">
+                            <?php
+                                echo ($category['name'])
+                                ?>
+                        </option>
 
                         <?php
                             while ($category = $result->fetch_assoc()) :
