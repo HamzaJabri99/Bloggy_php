@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $body = mysqli_escape_string($con, $_POST['body']);
     $image = mysqli_escape_string($con, $_FILES['image']['name']);
     $author = mysqli_escape_string($con, $_POST['author']);
-    $category = !(empty($_POST['category'])) ? mysqli_escape_string($con, $_POST['category']) : 'error';
+
     $created = date("Y-m-d h:m:s");
     if (empty($title)) {
         $errors = "title is required";
@@ -17,10 +17,11 @@ if (isset($_POST['submit'])) {
     } else if (empty($image)) {
         $errors = "Please provide an image";
     } else if (empty($author)) {
-        $errors = "title is required";
-    } else if (empty($category)) {
+        $errors = "author is required";
+    } else if (empty($_POST['category'])) {
         $errors = "category is required";
     } else {
+        $category = mysqli_escape_string($con, $_POST['category']);
         $directory = 'imgs/';
         $file = $directory . basename($_FILES['image']['name']);
         $query = "insert into articles(title,body,image,author,category_id,created) values('$title','$body','$image','$author','$category','$created')";
@@ -77,8 +78,9 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="col-12">
                     <label for="author" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="author" name="author"
-                        value="<?php echo (isset($author)) ?  $author : '' ?>">
+                    <input type="text" class="form-control" id="author" name="author" value="<?php if (isset($author)) {
+                                                                                                    echo $author;
+                                                                                                } ?>">
                 </div>
                 <div class="col-md-6">
                     <?php
@@ -88,7 +90,7 @@ if (isset($_POST['submit'])) {
                     <label for="category" class="form-label">Category</label>
                     <select id="category" class="form-select" name="category">
 
-                        <option disabled selected>
+                        <option disabled selected value="<?php echo null ?>">
                             select a category
                         </option>
                         <?php
