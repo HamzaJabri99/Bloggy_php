@@ -17,9 +17,8 @@ include('./includes/header.php');
                 <div class=" row g-0">
                     <div class="col-md-4">
                         <a href="articlePosts.php?id=<?php echo ($article['id']) ?>"><img
-                                src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg"
-                                alt="Trendy Pants and Shoes" class="card-img img-fluid rounded"
-                                style="height:100%" /></a>
+                                src="admin/imgs/<?php echo $article['image'] ?>" alt="Trendy Pants and Shoes"
+                                class="card-img img-fluid rounded" style="height:100%" /></a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -38,6 +37,8 @@ include('./includes/header.php');
                                     $string = $article['body'];
                                     if (strlen($string) > 200) {
                                         echo substr($string, 0, 200) . '...';
+                                    } else {
+                                        echo $string;
                                     }
                                     ?>
                                 <a href="articlePosts.php?id=<?php echo ($article['id']) ?>" class=" bg-light">Read
