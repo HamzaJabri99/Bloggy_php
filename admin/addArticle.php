@@ -3,12 +3,10 @@ include('./includes/header.php');
 $errors = [];
 $message = "";
 if (isset($_POST['submit'])) {
-
     $title = mysqli_escape_string($con, $_POST['title']);
     $body = mysqli_escape_string($con, $_POST['body']);
     $image = mysqli_escape_string($con, $_FILES['image']['name']);
     $author = mysqli_escape_string($con, $_POST['author']);
-
     $created = date("Y-m-d h:m:s");
     if (empty($title)) {
         $errors = "title is required";

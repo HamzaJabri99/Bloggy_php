@@ -62,6 +62,14 @@ if ($result = mysqli_query($con, $articles)) {
 
             <div class="row my-5">
                 <h3 class="fs-4 mb-3">List of Articles</h3>
+                <?php
+                if (isset($_GET['deleted'])) {
+                    echo ' <div class="w-25 mx-auto alert alert-warning alert-dismissible fade show" role="alert">
+   ' . $_GET['deleted'] . '
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+                }
+                ?>
                 <div class="col-sm-12">
                     <table
                         class="table bg-white rounded shadow-sm w-100 mx-auto table-hover text-center table-bordered ">
@@ -104,8 +112,15 @@ if ($result = mysqli_query($con, $articles)) {
                                     <a href="editArticle.php?id=<?php echo ($articles["id"]) ?>"
                                         class="btn btn-sm btn-warning ms-2 me-2"><i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="deleteArticle.php?id=<?php echo ($articles["id"]) ?>"
-                                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+
+
+                                    <a class="btn btn-sm btn-danger"
+                                        href="deleteArticle.php?id=<?php echo $articles['id'] ?>"> <i
+                                            class="fas fa-trash"></i></a>
+                                    </button>
+
+
+
                                 </td>
                             </tr>
                             <?php endwhile; ?>
