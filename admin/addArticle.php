@@ -1,14 +1,14 @@
 <?php
 include('./includes/header.php');
-
+$errors = [];
+$message = "";
 if (isset($_POST['submit'])) {
-    $errors = [];
-    $message = "";
+
     $title = mysqli_escape_string($con, $_POST['title']);
     $body = mysqli_escape_string($con, $_POST['body']);
     $image = mysqli_escape_string($con, $_FILES['image']['name']);
     $author = mysqli_escape_string($con, $_POST['author']);
-    $category = $_POST['category'];
+    $category = !(empty($_POST['category'])) ? mysqli_escape_string($con, $_POST['category']) : 'error';
     $created = date("Y-m-d h:m:s");
     if (empty($title)) {
         $errors = "title is required";
@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
         $query = "insert into articles(title,body,image,author,category_id,created) values('$title','$body','$image','$author','$category','$created')";
         if (mysqli_query($con, $query)) {
             move_uploaded_file($_FILES['image']['tmp_name'], $file);
+            $_POST = "";
             $message = '<p class="alert alert-success">inserted successfuly</p>';
         } else {
             echo mysqli_error($con);
@@ -47,10 +48,13 @@ if (isset($_POST['submit'])) {
 
 <body>
     <h3 class="text-center mt-5">Add New Article</h3>
+
     <div class="container">
         <?php
         if (!empty($errors)) {
-            echo '<p class="alert alert-danger">' . $errors . '</p>';
+            echo '<div class="alert alert-danger">' . $errors . '</div>';
+        } else {
+            echo $message;
         }
         ?>
         <form class="row g-3" method="POST" enctype="multipart/form-data">
@@ -59,12 +63,13 @@ if (isset($_POST['submit'])) {
                 <div class="col-12 mt-4">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title"
-                        value="<?php echo isset($_POST['title']) ?  $_POST['title'] : '' ?>">
+                        value="<?php echo (isset($_POST['title'])) ?  $_POST['title'] : '' ?>">
                 </div>
                 <div class="col-12">
                     <label for="body">Content</label>
-                    <textarea class="form-control" id="body" name="body" rows="5" cols="30"><?php echo isset($_POST['body']) ?  $_POST['body'] : '' ?>
-                    </textarea>
+                    <textarea class="form-control" id="body" name="body" rows="5" cols="30"><?php
+                                                                                            echo (isset($_POST['body'])) ? $_POST['body'] : '';
+                                                                                            ?></textarea>
                 </div>
                 <div class="col-12">
                     <label for="image" class="form-label">Image</label>
@@ -73,7 +78,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-12">
                     <label for="author" class="form-label">Author</label>
                     <input type="text" class="form-control" id="author" name="author"
-                        value="<?php echo isset($author) ?  $author : '' ?>">
+                        value="<?php echo (isset($author)) ?  $author : '' ?>">
                 </div>
                 <div class="col-md-6">
                     <?php
@@ -91,7 +96,7 @@ if (isset($_POST['submit'])) {
                         ?>
 
                         <option value="<?php echo $categories["id"] ?>">
-                            <?php echo isset($category) ? $category :  $categories['name'] ?></option>
+                            <?php echo  $categories['name'] ?></option>
                         <?php endwhile; ?>
                     </select>
 
