@@ -6,7 +6,8 @@
             <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
                     class="fas fa-tachometer-alt me-2"></i>
                 dashboard</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+            <a href="addArticle.php"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-file-circle-plus me-2"></i>
                 Add An Article</a>
             <a href="articles.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
