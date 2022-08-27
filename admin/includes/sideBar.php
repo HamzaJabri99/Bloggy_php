@@ -13,10 +13,12 @@
             <a href="articles.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-newspaper me-2"></i>
                 Articles</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+            <a href="addCategory.php"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-calendar-plus me-2"></i>
                 Add a Category</a>
-            <a href="" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
+            <a href="categories.php"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i
                     class="fa-solid fa-layer-group me-2"></i>
                 Categories</a>
 
