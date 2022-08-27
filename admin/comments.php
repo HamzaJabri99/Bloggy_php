@@ -48,7 +48,7 @@ if ($result = mysqli_query($con, $unpublished)) {
                     <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
                             <h3 class="fs-2"><?php echo ($unpublishedComments) ?></h3>
-                            <p class="fs-5">Unpulished Comments</p>
+                            <p class="fs-5">Comments</p>
                         </div>
                         <i class="fas fa-comment-dots fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
@@ -76,6 +76,7 @@ if ($result = mysqli_query($con, $unpublished)) {
                                 <th scope="col">username</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Comment</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">posted</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -83,7 +84,7 @@ if ($result = mysqli_query($con, $unpublished)) {
 
                         <tbody>
                             <?php
-                            $query = "select*from comments where status=0";
+                            $query = "select*from comments";
                             $result = mysqli_query($con, $query);
                             while ($comments = $result->fetch_assoc()) :
                             ?>
@@ -93,8 +94,13 @@ if ($result = mysqli_query($con, $unpublished)) {
                                 <td class="col-sm-1"><?php echo ($comments['email']) ?>
                                 </td>
                                 <td><?php
-                                        $commentBody = substr($comments["comment"], 0, -1);
+                                        $commentBody = substr($comments["comment"], 0, 100);
                                         echo $commentBody . '....' ?></td>
+                                <td>
+                                    <?php
+                                        echo ($comments['status'] == 1) ? '<p class="badge bg-success">approved</p>' : '<p class="badge bg-warning">pending</p>'
+                                        ?>
+                                </td>
 
                                 <td><?php $cleantime = substr($comments["created"], 0, -8);
                                         echo  $cleantime ?></td>
