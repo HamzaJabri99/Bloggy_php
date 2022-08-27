@@ -81,7 +81,6 @@ if ($result = mysqli_query($con, $categories)) {
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <?php
                             $query = "select*from categories";
@@ -95,18 +94,13 @@ if ($result = mysqli_query($con, $categories)) {
                                     <?php echo ($categories["added_by"]) ?>
                                 </td>
                                 <td>
-                                    <a href="editArticle.php?id=<?php echo ($categories["id"]) ?>"
+                                    <a href="editCategory.php?id=<?php echo $categories['id'] ?>"
                                         class="btn btn-sm btn-warning ms-2 me-2"><i class="fas fa-edit"></i>
                                     </a>
-
-
                                     <a class="btn btn-sm btn-danger"
-                                        href="deleteArticle.php?id=<?php echo $articles['id'] ?>"> <i
+                                        href="deleteCategory.php?id=<?php echo $categories['id'] ?>"> <i
                                             class="fas fa-trash"></i></a>
                                     </button>
-
-
-
                                 </td>
                             </tr>
                             <?php endwhile; ?>
