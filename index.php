@@ -103,9 +103,8 @@ include('./includes/header.php');
                 <li class="list-group-item">
                     <div class="card bg-light text-dark mb-3" style="max-width: 18rem;">
                         <div class="card-header d-flex justify-content-between"> <a href=""><img
-                                    src="https://images3.alphacoders.com/606/thumb-1920-606036.jpg"
-                                    alt="Trendy Pants and Shoes" class="card-img img-fluid rounded"
-                                    style="height:100%" /></a>
+                                    src="./admin/imgs/<?php echo $article['image'] ?>" alt="Trendy Pants and Shoes"
+                                    class="card-img img-fluid rounded" style="height:100%" /></a>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo ($article['title']) ?></h5>
