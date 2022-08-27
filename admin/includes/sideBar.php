@@ -22,7 +22,7 @@
                     class="fa-solid fa-layer-group me-2"></i>
                 Categories</a>
 
-            <a href=""
+            <a href="./comments.php"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold w-auto px-3 fs-6"><i
                     class="fas fa-comment-dots me-2 "></i>
                 Manage Comments
