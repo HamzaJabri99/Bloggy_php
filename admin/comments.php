@@ -100,7 +100,7 @@ if ($result = mysqli_query($con, $unpublished)) {
                                         echo  $cleantime ?></td>
 
                                 <td>
-                                    <a href="editArticle.php?id=<?php echo ($comments["id"]) ?>"
+                                    <a href="editComment.php?id=<?php echo ($comments["id"]) ?>"
                                         class="btn btn-sm btn-success ms-2 me-2"><i class="fas fa-check"></i>
                                     </a>
 
